@@ -1,37 +1,37 @@
 #Ubuntu docker mirror
 
-# CI [![CircleCI](https://circleci.com/gh/gianrubio/docker-mirror-ubuntu/tree/master.svg?style=svg&circle-token=c63bcdcabe6985b72ce3538934175b796ce27562)](https://circleci.com/gh/gianrubio/docker-mirror-ubuntu/tree/master)
+# Continuous integration [![CircleCI](https://circleci.com/gh/gianrubio/docker-mirror-ubuntu/tree/master.svg?style=svg&circle-token=c63bcdcabe6985b72ce3538934175b796ce27562)](https://circleci.com/gh/gianrubio/docker-mirror-ubuntu/tree/master)
 
-Every push on master branch will call a webhook to [circleci](https://circleci.com/gh/gianrubio/docker-mirror-ubuntu/) and build a docker image. 
+Every push to the master branch will call a webhook to [circleci](https://circleci.com/gh/gianrubio/docker-mirror-ubuntu/) and build a docker image. 
 When the CI successfully run, it will push docker images to docker hub. More info on [circle.yml](blob/master/circle.yml#L25-27)
 
 # Architecture
 
-This applications has the concept of [microservices](http://martinfowler.com/articles/microservices.html).
-There are 3 docker images, each one it's a specialized service that run *only one task*. The orchestration are managed by [docker-compose](blob/master/docker-compose.yml). 
+This application has the concept of [microservices](http://martinfowler.com/articles/microservices.html).
+There are 3 docker images, each one it's a specialized service that run *only one task*. The orchestration is managed by [docker-compose](blob/master/docker-compose.yml). The services are:
 
 * [sync-mirror-server](blob/master/sync-mirror-server/Dockerfile)
-Simple daemon that download mirror files from ubuntu archive. When the mirror finish the sync, it will create a new file that was shared with test-client.
-This daemon sync files every day.
+Simple daemon that download mirror files from ubuntu archive. When the mirror has finished the sync, it will create a new file that will be shared with test-client.
+This daemon will sync files every day.
 
 * [www-server](blob/master/www-server/Dockerfile)
-HTTP Server responsible to provide synced mirror files using nginx.
+HTTP Server is responsible to provide synced mirror files using nginx.
 
 * [test-client](blob/master/test-client/Dockerfile)
-A docker image to proof that the architecture of the app will work. This image will wait mirror server to finish the sync, using a [shared file](blob/master/test-client/wait-sync-server-finish.sh). 
+It's a docker image to proof that the architecture of the app will work. This image will keep waiting mirror server to finish the sync, using a [shared file](blob/master/test-client/wait-sync-server-finish.sh). 
 
-# Setup project
+# Getting started
 
-1. To run this application you need to clone this repo, setup [docker](https://docs.docker.com/engine/installation/) and [docker-compose](https://docs.docker.com/compose/install/).
+To get started, you need to clone this repo, setup [docker](https://docs.docker.com/engine/installation/) and [docker-compose](https://docs.docker.com/compose/install/).
 
-2. Start docker-compose
+* Start docker-compose
 ```
 docker-compose up
 ```
-3. Wait the magical happen. 
-  1. sync-mirror-server will start the sync.
-  2. www-server will get up.
-  3. test-client will wait sync server to finish and simply run apt-get update. 
+* Wait until the magic will happend.  
+  * sync-mirror-server will start the sync.
+  * www-server will get up.
+  * test-client will keep waiting the sync server to finish and simply run apt-get update. 
  
 # Project requirements
 
