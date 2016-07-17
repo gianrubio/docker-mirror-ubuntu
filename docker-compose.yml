@@ -15,10 +15,13 @@ services:
     image: gianrubio/ubuntu-mirror:sync-mirror-server
     volumes:
       - ./data:/data
-
+      - /wait
 
   test-client:
     build: test-client
     image: gianrubio/ubuntu-mirror:test-client
+    volumes_from:
+      - sync-mirror-server
     links:
       - www-server
+    entrypoint: /wait-sync-server-finish.sh /wait/done "apt-get update"
