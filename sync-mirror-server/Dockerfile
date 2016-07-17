@@ -9,8 +9,11 @@ RUN mkdir -p /data/mirror/www
 RUN chown -R www-data: /data
 RUN echo "set base_path /data/mirror" >> /etc/apt/mirror.list
 RUN echo "set mirror_path /data/mirror/www" >> /etc/apt/mirror.list
-ADD cron-apt-mirror /etc/cron.d/apt-mirror
-RUN chmod 0644 /etc/cron.d/apt-mirror
+
+WORKDIR /sync
+ADD daemon-apt-mirror.sh .
+RUN chmod +x daemon-apt-mirror.sh
 
 VOLUME [ "/data/"]
-CMD cron
+
+CMD ./daemon-apt-mirror.sh
