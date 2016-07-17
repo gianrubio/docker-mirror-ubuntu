@@ -1,8 +1,8 @@
 #Ubuntu docker mirror
 
-# Continuous integration [![CircleCI](https://circleci.com/gh/gianrubio/docker-mirror-ubuntu/tree/master.svg?style=svg&circle-token=c63bcdcabe6985b72ce3538934175b796ce27562)](https://circleci.com/gh/gianrubio/docker-mirror-ubuntu/tree/master)
+# Continuous integration [![CircleCI](https://circleci.com/gh/gianrubio/ubuntu-docker-mirror.svg?style=svg)](https://circleci.com/gh/gianrubio/ubuntu-docker-mirror)
 
-Every push to the master branch will call a webhook to [circleci](https://circleci.com/gh/gianrubio/docker-mirror-ubuntu/) and build a docker image. 
+Every push to the master branch will call a webhook to [circleci](https://circleci.com/gh/gianrubio/ubuntu-docker-mirror/) and build a docker image. 
 When the CI successfully run, it will push docker images to docker hub. More info on [circle.yml](blob/master/circle.yml#L25-27)
 
 # Architecture
