@@ -1,5 +1,8 @@
 #ubuntu docker mirror
 
+# CI status
+[![CircleCI](https://circleci.com/gh/gianrubio/docker-mirror-ubuntu/tree/master.svg?style=svg&circle-token=c63bcdcabe6985b72ce3538934175b796ce27562)](https://circleci.com/gh/gianrubio/docker-mirror-ubuntu/tree/master)
+
 To run this docker mirror you need to setup (docker)[https://docs.docker.com/engine/installation/] and (docker-compose)[https://docs.docker.com/compose/install/]
 
 

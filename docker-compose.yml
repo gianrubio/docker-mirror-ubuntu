@@ -22,4 +22,3 @@ services:
     image: gianrubio/ubuntu-mirror:test-client
     links:
       - www-server
-
