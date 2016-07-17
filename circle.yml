@@ -1,0 +1,21 @@
+machine:
+  ruby:
+    version: 2.3.0
+  services:
+    - docker
+
+dependencies:
+  pre:
+    - docker login -e $EMAIL -u $USER -p $PASS
+
+test:
+  override:
+    - docker-compose build
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - docker push gianrubio/ubuntu-mirror:www-server
+      - docker push gianrubio/ubuntu-mirror:sync-mirror-server
+      - docker push gianrubio/ubuntu-mirror:test-client

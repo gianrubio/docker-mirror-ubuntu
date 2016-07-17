@@ -1,0 +1,25 @@
+version: '2'
+volumes:
+  data: {}
+services:
+  www-server:
+    build: www-server
+    image: gianrubio/ubuntu-mirror:www-server
+    ports:
+      - 80:80
+    volumes:
+      - ./data:/data
+
+  sync-mirror-server:
+    build: sync-mirror-server
+    image: gianrubio/ubuntu-mirror:sync-mirror-server
+    volumes:
+      - ./data:/data
+
+
+  test-client:
+    build: test-client
+    image: gianrubio/ubuntu-mirror:test-client
+    links:
+      - www-server
+
