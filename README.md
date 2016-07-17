@@ -75,4 +75,5 @@ File [www-server/nginx-ubuntu-mirror.conf](blob/master/www-server/nginx-ubuntu-m
     add_header Content-Type text/plain;
   }
 ```
+
 * Adhere as much as you can to the 12-factor app development guidelines (http://12factor.net).
