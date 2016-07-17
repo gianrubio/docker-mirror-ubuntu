@@ -14,10 +14,10 @@ There are 3 docker images, each one it's a specialized service that run *only on
 Simple daemon that download mirror files from ubuntu archive. When the mirror finish the sync, it will create a new file that was shared with test-client.
 This daemon sync files every day.
 
-[www-server](blob/master/www-server/Dockerfile)
+* [www-server](blob/master/www-server/Dockerfile)
 HTTP Server responsible to provide synced mirror files using nginx.
 
-[test-client](blob/master/test-client/Dockerfile)
+* [test-client](blob/master/test-client/Dockerfile)
 A docker image to proof that the architecture of the app will work. This image will wait mirror server to finish the sync, using a [shared file](blob/master/test-client/wait-sync-server-finish.sh). 
 
 # Setup project
@@ -49,7 +49,7 @@ Look on file [sync-mirror-server/daemon-apt-mirror.sh](blob/master/www-server/ng
 File [nginx.conf](blob/master/www-server/Dockerfile#L10)
 
 ```
-limit_req_zone \$binary_remote_addr zone\=one\:10m rate\=10r
+limit_req_zone $binary_remote_addr zone=one:10m rate=10r
 ```
 
 * Only machines from the local RFC1918 range may access the mirror
