@@ -5,8 +5,8 @@ machine:
     - docker
 
 dependencies:
-  pre:
-    - pip install --upgrade docker-compose
+  override:
+    - sudo pip install --upgrade docker-compose
     - docker login -e $EMAIL -u $USER -p $PASS
 
 test:
