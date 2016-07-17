@@ -43,7 +43,9 @@ mounted volume /data, shared across servers sync and www.
 
 * The data volume needs to be synced daily from the upstream mirror
 
-Look on file [sync-mirror-server/daemon-apt-mirror.sh](blob/master/www-server/nginx-ubuntu-mirror.conf#L6-L11)
+```
+Look on the file [sync-mirror-server/daemon-apt-mirror.sh](blob/master/www-server/nginx-ubuntu-mirror.conf#L6-L11)
+```
 
 * Implement rate limiting (10 requests per second per client)
 File [nginx.conf](blob/master/www-server/Dockerfile#L10)
@@ -68,7 +70,7 @@ deny                    all;
 File [www-server/nginx-ubuntu-mirror.conf](blob/master/www-server/nginx-ubuntu-mirror.conf#L16-L19)
 
 ```
-  location /healtcheck {
+  location /healthcheck {
     return 200 'OK!';
     add_header Content-Type text/plain;
   }
