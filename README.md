@@ -1,6 +1,6 @@
 #Ubuntu docker mirror
 
-A simple microservice docker mirror.
+A simple microservice for docker mirror.
 
 # Continuous integration [![CircleCI](https://circleci.com/gh/gianrubio/ubuntu-docker-mirror.svg?style=svg)](https://circleci.com/gh/gianrubio/ubuntu-docker-mirror)
 
