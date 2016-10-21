@@ -25,3 +25,6 @@ deployment:
       - docker push gianrubio/ubuntu-mirror:www-server
       - docker push gianrubio/ubuntu-mirror:sync-mirror-server
       - docker push gianrubio/ubuntu-mirror:test-client
+notify:
+  webhooks:
+    - url: https://samson.qa.ddy.systems/integrations/circleci/142446721af88ad053f2fd74898ba138
